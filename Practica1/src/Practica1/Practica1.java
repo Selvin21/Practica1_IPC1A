@@ -1,8 +1,10 @@
 package Practica1;
 import java.util.Scanner;
+import java.util.Random;
 public class Practica1 {
 	
 	public static void main(String[]args){
+		Random rd= new Random();
 		int num=0;
 		do{
 		System.out.println("Practica 1: Problemas  nivel 1 y 2 \n"
@@ -78,10 +80,9 @@ public class Practica1 {
 		System.out.println("***********************************************************");
 						}
 		else if(num==3){
-			String hora, numeros="0123456789", minutos="0";
+			String hora, minutos="0";
 			int hora1=0, hora2=0, hora3=0;
-			char h1, h2, b1, m1,m2;
-			
+						
 			System.out.println("Cambiar la notacion de una hora de 24 a 12 horas\n"
 					+ "\n"
 					+ "Introduzca la fecha que desea transformar en formato hh:mm");
@@ -89,6 +90,7 @@ public class Practica1 {
 			hora = s.next();
 			hora1= hora.length();
 			if(hora1==5){
+				char h1, h2, b1, m1,m2;
 				h1=hora.charAt(0);
 				h2=hora.charAt(1);
 				b1=hora.charAt(2);
@@ -138,14 +140,12 @@ public class Practica1 {
 										+ "Area="+a);
 			}
 			else if(letra.equals("t")||letra.equals("T")){
-				double l,b,a,p,h;
+				double l,a,p,h;
 				System.out.println("Ingrese la longitud de uno de los lados del triangulo ()");
 				l=s.nextDouble();
-				System.out.println("Ingrese el tamaño de la base del triangulo");
-				b=s.nextDouble();
-				h=Math.sqrt(Math.pow(l,2)-((b/2)*(b/2)));
-				a=(b*h)/2;
-				p=(2*l)+b;
+				h=(Math.sqrt(3)/2)*l;
+				a=(Math.sqrt(3)/4)*l*l;
+				p=(3*l);
 				System.out.println("Las operaciones calculadas son las siguientes\n"
 						+ "Area="+a+"\n"
 								+ "Perimetro="+p+"\n"
@@ -206,12 +206,293 @@ public class Practica1 {
 				System.out.println("Un dato ingresado no es el correcto"
 						+ "************************************************************");
 		}
+		else if(num==6){
+			float n1, n2;
+			String letra;
+			System.out.println("Calculadora\n"
+					+ "Ingrese la letra segun la operacion que desea realizar\n"
+					+ "    \n"
+					+ "S = Suma;\n"
+					+ "R = Resta;\n"
+					+ "M = Multiplicacion\n"
+					+ "D = Division");
+			letra = s.next();
+			System.out.println("Ingrese el primer numero");
+			n1=s.nextFloat();
+			System.out.println("Ingrese el segundo numero");
+			n2=s.nextFloat();
+				
+			if(letra.equals("S")||letra.equals("s"))
+					System.out.println("La suma de los numeros es = "+" "+ (n1+n2));
+			else if(letra.equals("R")|| letra.equals("r"))
+				System.out.println("La resta de los numeros es = "+" "+ (n1-n2));
+			else if(letra.equals("M")||letra.equals("m"))
+				System.out.println("La multiplicacion de los numeros es = "+" "+(n1*n2));
+			else if(letra.equals("D")||letra.equals("d"))
+				System.out.println("division de los numeros es = "+n1+"/"+n2+" = "+" "+ (n1/n2));
+			else
+				System.out.println("La letra ingresada es incorrecta\n");		
+			}
+		else if(num==7){
+			int multi;
+			System.out.println("Las tablas de multiplicar\n"
+					+ "\n"
+					+ "Ingrese un numero del 0 al 10");
+			multi=s.nextInt();
+			if(multi>=0&&multi<11)
+			for(int i=11; i>1; i--)
+				System.out.println(multi+"X"+ (i-1)+"="+" "+(multi*(i-1)));
+			else
+				System.out.println("el numero ingresado no esta dentro del intervalo pedido");						
+		}
+		else if(num==8){
+			int nu1, nu2 ;
+			System.out.println("Numeros aleatorios\n"
+					+ "\n"
+					+ "Ingrese un numero dentro del rango de 0-100\n");
+			nu1=s.nextInt();
+			System.out.println("Ingrese otro numero diferente al primero dentro del rango de 0-100");
+			nu2=s.nextInt();
+			if(nu1<101 &&nu2<101&&nu1>=0&&nu2>=0){				
+				
+				int max=rd.nextInt(nu2+1)+nu1;
+			String uni[]={"cero","uno","dos","tres","cuatro","cinco","seis","siete","ocho","nueve","diez"};
+			String unic[]={"once","doce","trece","catorce","quince","dieciseis","diecisiete","dieciocho","diecinueve"};
+			String venti[]={"Veinte","Veintiuno","Ventidos","Veintitres","Veinticuatro","Veinticinco","Veintiseis","Veintisiete","Veintiocho","Veintinueve"};
+			String cent[]={"veinte","treinta","cuarenta","cincuenta","sesenta","setenta","ochenta","noventa"};
+			if(max>=0 && max<11)
+				System.out.println("Numero en numero ="+" "+max+"\n"
+						+"Numero en letras ="+" "+ uni[max]);
+				else if(max<20)
+					System.out.println("Numero ="+" "+max+"\n"
+							+ "Numero en letras ="+" "+unic[max-11]);
+				else if(max>19&&max<30)
+					System.out.println("Numero ="+" "+max+"\n"
+							+ "Numero en letras ="+" "+ venti[max-20]);
+				else if(max<20){
+					int un=max%10;
+					int dc=max/10;
+					if(un==0)
+						System.out.println("Numero ="+" "+max+"\n"
+								+ "Numero en letras ="+" "+ cent[dc-2]);
+					else
+						System.out.println("Numero ="+" "+max+"\n"
+								+ "Numero en letras ="+" "+ cent[dc-2]+""+"y"+" "+uni[un]);
+				}
+				
+				else if(max==100)
+					System.out.println("Numero ="+" "+max+"\n"
+							+ "Numero en letras ="+" "+"Cien");
+				else if(max==0)
+					System.out.println("Numero ="+" "+max+"\n"
+							+ "Numero en letras ="+" "+"Cero");
+					
+			}
+			else
+			
+				System.out.println("El numero ingresado no esta dentro de los limites establecido o los numeros son iguales");	
+			}
+		else if(num==9){
+			int numero;
+			System.out.println("Numeros Romanos\n"
+					+ "Ingrese un numero el cual desee convertirlo a numero romano del rango de 1 al 3999");
+			numero=s.nextInt();
+			
+			String base[]={" ","I","II","III","IV","V","VI","VII","VIII","IX"};
+			String decena[]={"X","XX","XXX","XL","L","LX","LXX","LXXX","XC"};
+			String cente[]={"C","CC","CCC","CD","D","DC","DCC","DCCC","CM"};
+			String mile[]={"M","MM","MMM"};
+			
+			if(numero<10&&numero>0)
+				System.out.println("El numero ingresado = " + numero+"\n"
+						+ "El numero en notacion romana = " + base[numero]);
+			else if(numero>9&&numero<100){
+				int  ter=numero%10;
+				int tor=numero/10;
+				if(ter==0)
+					System.out.println("El numero ingresado = " + numero +"\n"
+							+ "El numero en notacion romana = "+ decena[tor-1]);
+				else
+					System.out.println("El numero ingresado = " + numero + "\n"
+							+ "El numero en notacion romana = "+ decena[tor-1]+base[ter]);}
+			else if(numero>=100&&numero<1000){
+				int cien=numero%100;
+				int ciene=numero/100;
+				if(cien==0)
+					System.out.println("El numero ingresado = " + numero +"\n"
+							+ "El numero en notacion romana = "+ cente[ciene-1]);
+				else{
+					int div=cien%10;
+					int val=cien/10;
+					if(div==0)
+						System.out.println("El numero ingresado = " + numero + "\n"
+								+ "El numero en notacion romana = "+ cente[ciene-1]+decena[val-1]);
+					else
+						System.out.println("El numero ingresado = " + numero + "\n"
+								+ "El numero en notacion romana = "+ cente[ciene-1]+decena[val-1]+base[div]);}
+									
+				}
+					
+			else if(numero>=1000&&numero<4000){
+				int mil=numero%1000;
+				int divmil=numero/1000;
+				if(mil==0)
+					System.out.println("El numero ingresado = " + numero +"\n"
+							+ "El numero en notacion romana = " + mile[divmil-1]);
+				else{
+					int cen=mil%100;
+					int cn=mil/100;
+					if(cen==0)
+						System.out.println("El numero ingresado = " + numero +"\n"
+								+ "El numero en notacion romana = " + mile[divmil-1]+cente[cn-1]);
+					else{
+						int ver=cen%10;
+						int loc=cen/10;
+						if(ver==0)
+							System.out.println("El numero ingresado = " + numero +"\n"
+									+ "El numero en notacion romana = " + mile[divmil-1]+cente[cn-1]+decena[loc-1]);
+						else
+							System.out.println("El numero ingresado = " + numero +"\n"
+									+ "El numero en notacion romana = " + mile[divmil-1]+cente[cn-1]+decena[loc-1]+ base[ver]);
+					}
+				}							
+			}
+			else
+				System.out.println("El numero que ingreso no esta dentro del intervalo dado");
+					
+				}
+		else if(num==10){
+			int pir;
+			System.out.println("Piramide de numeros\n"
+					+ "Ingrese el numero del cual desea que la piramide tenga el tamaño");
+			pir=s.nextInt();
+			if(pir<10&&pir%2==0){
+			for (int i = 0; i < pir; i++) {				 	            
+	            int nu=pir;
+	            
+				for (int j = pir; j>pir-i; j-- ) {                      
+	                System.out.print(" ");  
+	                nu--;
+	            }
+	            for (int j =pir*2; j>(2*i); j--  ){
+	            	if(j%2==0)
+	            		System.out.print(nu);
+	            	else
+	                    System.out.print(" ");
+	                
+	            }
+	            System.out.println(""); 
+			}
+			}
+			else if(pir<10&&pir%2!=0){
+				for (int i = 0; i < pir; i++) {				 	            
+		            int nu=1;
+		            
+					for (int j = pir; j>pir-i; j-- ) {                      
+		                System.out.print(" ");  
+		                nu++;
+		            }
+		            for (int j =pir*2; j>(2*i); j--  ){
+		            	if(j%2==0)
+		            		System.out.print(" ");
+		            	else
+		                    System.out.print(nu);
+		                
+		            }
+		            System.out.println(""); 
+				}	
+			}		
+			     }
+		else if(num==11){
+			
+			
+		}
+		else if(num==12){
+			String cadena=" ";
+			int numc;
+			
+			System.out.println("Cadena de caracteres y asteriscos\n"
+					+ "Ingrese una cadena de caracteres");
+			cadena=s.next();
+			numc=cadena.length();
+			
+			for(int i=0; i<numc; i++){
+				System.out.print("*");
+			}
+			System.out.println(" ");
+			}
+		else if(num==13){
+			String letra;
+			
+			System.out.println("Encuentra la letra");
+			String  abecedario[]={"a","b","c","d","e","f","g","h","i","j","k","l","m","n","ñ","0","p","q","r","s","t","u","v","w","x","y","z"};
+			
+			int max=rd.nextInt(27+1)+0;			
+			System.out.println("La letra a encontrar es"+"="+abecedario[max]);
+				
+		String comp= abecedario[max];
+		
+		do{
+			System.out.println("Ingrese su letra como solucion");
+			letra=s.next();
+			
+          if(letra.compareTo(comp)==0){
+			  
+			System.out.println("Respuesta correcta");}
+		else if(letra.compareTo(comp)<0)
+			System.out.println("La letra esta despues\n");
+		else if(letra.compareTo(comp)>0)
+			System.out.println("La letra esta antes\n");
+		}while(letra.compareTo(comp)!=0);
+			}
+		else if(num==14){
+			int tamaño;
+			System.out.println("Cuadro de asteriscos\n"
+					+ "Ingrese el numero para el tamaño del cuadrado");
+		tamaño=s.nextInt();
+		for(int i=0;i<tamaño;i++){
+			for(int j=0;j<tamaño;j++){
+				System.out.print("*"+" \n");
+			}
+			System.out.println("");
+		}
+		}
+		else if(num==15){
+			int primo;
+			System.out.println("Cantidad de numeros primeros");
+			primo=s.nextInt();
+		}
+		
+		
+		
+		
+			
+					
+			
+				
+					
+			
+			
+							
+							
+				
+					
+		
+				
+				
+					
+				
+		
+			
+		
+		
+			
+			
 		
 		
 		
 		
 		
-		}while(num!=0);
+		}while(num!=0);	
 	}
-
 }
